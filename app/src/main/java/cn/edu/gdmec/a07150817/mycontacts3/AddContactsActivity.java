@@ -56,6 +56,7 @@ public class AddContactsActivity extends AppCompatActivity {
                     //调用上一个类的方法
                     if (ct.addData(user)){
                         Toast.makeText(AddContactsActivity.this,"添加成功",Toast.LENGTH_LONG).show();
+
                         finish();
                     }else{
                         Toast.makeText(AddContactsActivity.this,"添加失败",Toast.LENGTH_LONG).show();

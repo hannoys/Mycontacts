@@ -20,6 +20,7 @@ public class ContactsTable {
         db = new MyDB(context);
         //如果数据表不存在则新疆数据表
         //是不是要调用一下MyDB的方法？
+
         if (!db.isTableExists(TABLENAME)){
             String createTableSql = "CREATE TABLE IF NOT EXISTS "+TABLENAME +"(id_DB integer "+
                     "primary key AUTOINCREMENT,"+
@@ -69,22 +70,22 @@ public class ContactsTable {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
+            if (cursor!=null){
+                cursor.close();
+            }
             //为什么不在MYdb里面closeConnection
-            cursor.close();
             db.closeConnection();
         }
         if (v.size()>0){
-            v.toArray(new User[]{});
+           return v.toArray(new User[]{});
         }else {
             User[] users = new User[1];
             User user = new User();
-            user.setName("mei");
+            user.setName("没有内容");
             //什么意思
             users[0] = user;
             return users;
-
         }
-        return null;
     }
     public User getUserById(int id){
         Cursor cursor = null;
